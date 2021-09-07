@@ -4,8 +4,7 @@ import javax.persistence.Entity;
 import java.math.BigDecimal;
 
 @Entity
-public class AccountAux extends ModelBase{
-
+public class AccountAux extends ModelBase {
     private BigDecimal totalDebit;
     private BigDecimal totalCredit;
     private BigDecimal balance;

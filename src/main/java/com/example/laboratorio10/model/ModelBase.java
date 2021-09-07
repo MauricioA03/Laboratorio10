@@ -1,5 +1,6 @@
 package com.example.laboratorio10.model;
 
+
 import com.example.laboratorio10.DtoBase.DtoBase;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class ModelBase<D extends DtoBase> {
@@ -15,7 +17,7 @@ public class ModelBase<D extends DtoBase> {
     private Long id;
 
     @CreatedDate
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIMESTAMP) //es necesario por que requiere un contexto
     @Column(nullable = false, updatable = false)
     private Date createdOn;
 

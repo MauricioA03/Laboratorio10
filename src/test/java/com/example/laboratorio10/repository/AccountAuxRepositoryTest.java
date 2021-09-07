@@ -1,18 +1,18 @@
-package com.example.laboratorio10.service;
+package com.example.laboratorio10.repository;
 
 import com.example.laboratorio10.model.AccountAux;
+import com.example.laboratorio10.service.AccountAuxService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.math.BigDecimal;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @SpringBootTest
@@ -23,8 +23,7 @@ public class AccountAuxRepositoryTest {
     @Test
     public void givenBalance100WhenDebit100TwiceShouldFail() {
 
-        assertThrows(DataIntegrityViolationException.class, () -> {
-//        assertThrows(ExecutionException.class, () -> {
+        assertThrows(ExecutionException.class, () -> {
             AccountAux accountAux = new AccountAux();
             accountAux.setTotalCredit(new BigDecimal("100"));
             accountAux.setTotalDebit(new BigDecimal("0"));
@@ -44,7 +43,7 @@ public class AccountAuxRepositoryTest {
 
             AccountAux accountAuxAfterOperations = accountService.getById(secondfinalAccount2.getId());
 
-            System.out.println("id: " + accountAuxAfterOperations.getId() + ", balance: " + accountAuxAfterOperations.getBalance() + ", debit: "+ accountAuxAfterOperations.getTotalDebit() + ", credit: " + accountAuxAfterOperations.getTotalCredit());
+            System.out.println("id: " + accountAuxAfterOperations.getId() + ", balance: " + accountAuxAfterOperations.getBalance() + ", debit: " + accountAuxAfterOperations.getTotalDebit() + ", credit: " + accountAuxAfterOperations.getTotalCredit());
 
             assertEquals(accountAuxAfterOperations.getBalance(), 0);
         });
