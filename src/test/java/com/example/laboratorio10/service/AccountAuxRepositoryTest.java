@@ -23,7 +23,8 @@ public class AccountAuxRepositoryTest {
     @Test
     public void givenBalance100WhenDebit100TwiceShouldFail() {
 
-        assertThrows(ExecutionException.class, () -> {
+        assertThrows(DataIntegrityViolationException.class, () -> {
+//        assertThrows(ExecutionException.class, () -> {
             AccountAux accountAux = new AccountAux();
             accountAux.setTotalCredit(new BigDecimal("100"));
             accountAux.setTotalDebit(new BigDecimal("0"));
